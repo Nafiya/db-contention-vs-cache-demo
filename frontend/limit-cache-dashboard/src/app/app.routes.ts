@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'calendar', component: CalendarComponent },
   { path: 'load-test', component: LoadTestComponent },
   { path: 'comparison', component: ComparisonComponent },
+  // { path: 'cache', component: CacheStatsComponent },
   { path: 'sync', component: SyncStatusComponent },
   { path: '**', redirectTo: '/dashboard' }
 ];
