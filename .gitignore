@@ -1,0 +1,22 @@
+# Backend build artifacts
+backend/target/
+
+# Frontend build artifacts
+frontend/limit-cache-dashboard/dist/
+frontend/limit-cache-dashboard/node_modules/
+frontend/limit-cache-dashboard/.angular/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Claude
+.claude/
