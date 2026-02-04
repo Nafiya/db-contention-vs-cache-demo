@@ -1,0 +1,50 @@
+<div class="cache-stats-page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Cache Stats</h1>
+      <p class="page-subtitle">Redis cache performance and management</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="warmCache()">Warm Cache</button>
+      <button class="btn btn-danger" (click)="clearCache()">Clear Cache</button>
+    </div>
+  </div>
+
+  @if (error) {
+    <div class="alert alert-error">{{ error }}</div>
+  }
+
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading cache stats...</p>
+    </div>
+  } @else if (stats) {
+    <div class="stats-grid">
+      <div class="card stat-card">
+        <div class="stat-label">Hit Rate</div>
+        <div class="stat-number">{{ stats.hitRate || 0 }}%</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Hits</div>
+        <div class="stat-number">{{ stats.hits || 0 }}</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Misses</div>
+        <div class="stat-number">{{ stats.misses || 0 }}</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Cache Size</div>
+        <div class="stat-number">{{ stats.size || 0 }}</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><h3>Full Stats</h3></div>
+        <button class="btn btn-secondary" (click)="loadStats()">Refresh</button>
+      </div>
+      <pre class="result-json">{{ stats | json }}</pre>
+    </div>
+  }
+</div>

@@ -1,0 +1,640 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.limitcache:limit-cache-poc >-------------------
+[INFO] Building Limit Cache POC 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ limit-cache-poc ---
+[INFO] Deleting /Users/nafiyasayed/Downloads/limit-cache-poc/backend/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ limit-cache-poc ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ limit-cache-poc ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 13 source files with javac [debug release 17] to target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[233,21] cannot find symbol
+  symbol:   method setSuccess(boolean)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[234,21] cannot find symbol
+  symbol:   method setData(T)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[235,21] cannot find symbol
+  symbol:   method setTimestamp(java.time.Instant)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[241,21] cannot find symbol
+  symbol:   method setSuccess(boolean)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[242,21] cannot find symbol
+  symbol:   method setData(T)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[243,21] cannot find symbol
+  symbol:   method setMessage(java.lang.String)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[244,21] cannot find symbol
+  symbol:   method setTimestamp(java.time.Instant)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[250,21] cannot find symbol
+  symbol:   method setSuccess(boolean)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[251,21] cannot find symbol
+  symbol:   method setError(java.lang.String)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[252,21] cannot find symbol
+  symbol:   method setTimestamp(java.time.Instant)
+  location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[96,58] cannot find symbol
+  symbol:   method isForceDirectDb()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[102,21] cannot find symbol
+  symbol:   method setLatencyMs(long)
+  location: variable response of type com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[104,25] cannot find symbol
+  symbol:   method isSuccess()
+  location: variable response of type com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[106,60] cannot find symbol
+  symbol:   method getMessage()
+  location: variable response of type com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[115,13] cannot find symbol
+  symbol:   variable log
+  location: class com.limitcache.service.LimitService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[118,35] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[120,43] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[121,34] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[135,28] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[135,47] cannot find symbol
+  symbol:   method getAmount()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[137,35] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[139,43] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[140,36] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[141,34] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[142,63] cannot find symbol
+  symbol:   method getAmount()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[157,87] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[160,39] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[162,47] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[163,38] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[173,28] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[174,28] cannot find symbol
+  symbol:   method getAmount()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[175,26] cannot find symbol
+  symbol:   method getVersion()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[180,67] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[182,26] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[182,51] cannot find symbol
+  symbol:   method getAmount()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[183,43] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[185,51] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[186,42] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[187,50] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[192,43] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[194,51] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[195,42] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[208,42] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[208,67] cannot find symbol
+  symbol:   method getAmount()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[202,35] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[204,43] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[205,36] cannot find symbol
+  symbol:   method getTransactionId()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[206,34] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[207,44] cannot find symbol
+  symbol:   method getAmount()
+  location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[223,37] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[225,44] cannot find symbol
+  symbol:   method getInitialLimit()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[226,41] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[227,40] cannot find symbol
+  symbol:   method getConsumed()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[228,48] cannot find symbol
+  symbol:   method getTransactionCount()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[237,44] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[238,36] cannot find symbol
+  symbol:   method getDayDate()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[239,44] cannot find symbol
+  symbol:   method getInitialLimit()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[240,41] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[241,40] cannot find symbol
+  symbol:   method getConsumed()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[242,48] cannot find symbol
+  symbol:   method getTransactionCount()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[246,24] incompatible types: java.lang.Object cannot be converted to com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[262,92] cannot find symbol
+  symbol:   method getDayDate()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[265,49] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[266,48] cannot find symbol
+  symbol:   method getDayDate()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[267,56] cannot find symbol
+  symbol:   method getInitialLimit()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[268,53] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[269,52] cannot find symbol
+  symbol:   method getConsumed()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[270,60] cannot find symbol
+  symbol:   method getTransactionCount()
+  location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[277,41] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[278,40] cannot find symbol
+  symbol:   method getDayDate()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[279,48] cannot find symbol
+  symbol:   method getInitialLimit()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[280,45] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[281,44] cannot find symbol
+  symbol:   method getConsumed()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[282,52] cannot find symbol
+  symbol:   method getTransactionCount()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[287,25] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.limitcache.model.LimitDTOs.LimitResponse
+    lower bounds: java.lang.Object
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[290,28] invalid method reference
+  cannot find symbol
+    symbol:   method getInitialLimit(T)
+    location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[292,28] invalid method reference
+  cannot find symbol
+    symbol:   method getRemaining(T)
+    location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[294,28] invalid method reference
+  cannot find symbol
+    symbol:   method getConsumed(T)
+    location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[296,30] invalid method reference
+  cannot find symbol
+    symbol:   method getUtilizationPercent(T)
+    location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[298,37] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitDTOs.MonthlyLimitsResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[320,37] cannot find symbol
+  symbol:   method getInitialLimit()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[321,18] cannot find symbol
+  symbol:   method setConsumed(long)
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[322,18] cannot find symbol
+  symbol:   method setTransactionCount(int)
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[331,9] cannot find symbol
+  symbol:   variable log
+  location: class com.limitcache.service.LimitService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[108,9] cannot find symbol
+  symbol:   variable log
+  location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[122,9] cannot find symbol
+  symbol:   variable log
+  location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[133,9] cannot find symbol
+  symbol:   variable log
+  location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[141,52] cannot find symbol
+  symbol:   method getDayDate()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[142,42] cannot find symbol
+  symbol:   method getDayDate()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[145,60] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[150,39] cannot find symbol
+  symbol:   method getInitialLimit()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[151,35] cannot find symbol
+  symbol:   method getConsumed()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[152,43] cannot find symbol
+  symbol:   method getTransactionCount()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[153,34] cannot find symbol
+  symbol:   method getVersion()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[154,34] cannot find symbol
+  symbol:   method getDayDate()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[181,37] cannot find symbol
+  symbol:   method getRemaining()
+  location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[257,43] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[315,13] cannot find symbol
+  symbol:   variable log
+  location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[330,9] cannot find symbol
+  symbol:   variable log
+  location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/DailyLimit.java:[92,31] cannot find symbol
+  symbol:   method builder()
+  location: class com.limitcache.model.LimitCacheEntry
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.031 s
+[INFO] Finished at: 2026-02-02T22:50:06-04:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project limit-cache-poc: Compilation failure: Compilation failure: 
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[233,21] cannot find symbol
+[ERROR]   symbol:   method setSuccess(boolean)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[234,21] cannot find symbol
+[ERROR]   symbol:   method setData(T)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[235,21] cannot find symbol
+[ERROR]   symbol:   method setTimestamp(java.time.Instant)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[241,21] cannot find symbol
+[ERROR]   symbol:   method setSuccess(boolean)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[242,21] cannot find symbol
+[ERROR]   symbol:   method setData(T)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[243,21] cannot find symbol
+[ERROR]   symbol:   method setMessage(java.lang.String)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[244,21] cannot find symbol
+[ERROR]   symbol:   method setTimestamp(java.time.Instant)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[250,21] cannot find symbol
+[ERROR]   symbol:   method setSuccess(boolean)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[251,21] cannot find symbol
+[ERROR]   symbol:   method setError(java.lang.String)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/LimitDTOs.java:[252,21] cannot find symbol
+[ERROR]   symbol:   method setTimestamp(java.time.Instant)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ApiResponse<T>
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[96,58] cannot find symbol
+[ERROR]   symbol:   method isForceDirectDb()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[102,21] cannot find symbol
+[ERROR]   symbol:   method setLatencyMs(long)
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[104,25] cannot find symbol
+[ERROR]   symbol:   method isSuccess()
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[106,60] cannot find symbol
+[ERROR]   symbol:   method getMessage()
+[ERROR]   location: variable response of type com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[115,13] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.limitcache.service.LimitService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[118,35] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[120,43] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[121,34] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[135,28] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[135,47] cannot find symbol
+[ERROR]   symbol:   method getAmount()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[137,35] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[139,43] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[140,36] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[141,34] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[142,63] cannot find symbol
+[ERROR]   symbol:   method getAmount()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[157,87] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[160,39] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[162,47] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[163,38] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[173,28] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[174,28] cannot find symbol
+[ERROR]   symbol:   method getAmount()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[175,26] cannot find symbol
+[ERROR]   symbol:   method getVersion()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[180,67] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[182,26] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[182,51] cannot find symbol
+[ERROR]   symbol:   method getAmount()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[183,43] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[185,51] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[186,42] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[187,50] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[192,43] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[194,51] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[195,42] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[208,42] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[208,67] cannot find symbol
+[ERROR]   symbol:   method getAmount()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[202,35] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.ConsumeResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[204,43] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[205,36] cannot find symbol
+[ERROR]   symbol:   method getTransactionId()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[206,34] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[207,44] cannot find symbol
+[ERROR]   symbol:   method getAmount()
+[ERROR]   location: variable request of type com.limitcache.model.LimitDTOs.ConsumeRequest
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[223,37] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[225,44] cannot find symbol
+[ERROR]   symbol:   method getInitialLimit()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[226,41] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[227,40] cannot find symbol
+[ERROR]   symbol:   method getConsumed()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[228,48] cannot find symbol
+[ERROR]   symbol:   method getTransactionCount()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[237,44] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[238,36] cannot find symbol
+[ERROR]   symbol:   method getDayDate()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[239,44] cannot find symbol
+[ERROR]   symbol:   method getInitialLimit()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[240,41] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[241,40] cannot find symbol
+[ERROR]   symbol:   method getConsumed()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[242,48] cannot find symbol
+[ERROR]   symbol:   method getTransactionCount()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[246,24] incompatible types: java.lang.Object cannot be converted to com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[262,92] cannot find symbol
+[ERROR]   symbol:   method getDayDate()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[265,49] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[266,48] cannot find symbol
+[ERROR]   symbol:   method getDayDate()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[267,56] cannot find symbol
+[ERROR]   symbol:   method getInitialLimit()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[268,53] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[269,52] cannot find symbol
+[ERROR]   symbol:   method getConsumed()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[270,60] cannot find symbol
+[ERROR]   symbol:   method getTransactionCount()
+[ERROR]   location: variable entry of type com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[277,41] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[278,40] cannot find symbol
+[ERROR]   symbol:   method getDayDate()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[279,48] cannot find symbol
+[ERROR]   symbol:   method getInitialLimit()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[280,45] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[281,44] cannot find symbol
+[ERROR]   symbol:   method getConsumed()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[282,52] cannot find symbol
+[ERROR]   symbol:   method getTransactionCount()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[287,25] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[290,28] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getInitialLimit(T)
+[ERROR]     location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[292,28] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getRemaining(T)
+[ERROR]     location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[294,28] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getConsumed(T)
+[ERROR]     location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[296,30] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getUtilizationPercent(T)
+[ERROR]     location: class com.limitcache.model.LimitDTOs.LimitResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[298,37] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitDTOs.MonthlyLimitsResponse
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[320,37] cannot find symbol
+[ERROR]   symbol:   method getInitialLimit()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[321,18] cannot find symbol
+[ERROR]   symbol:   method setConsumed(long)
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[322,18] cannot find symbol
+[ERROR]   symbol:   method setTransactionCount(int)
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitService.java:[331,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.limitcache.service.LimitService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[108,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[122,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[133,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[141,52] cannot find symbol
+[ERROR]   symbol:   method getDayDate()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[142,42] cannot find symbol
+[ERROR]   symbol:   method getDayDate()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[145,60] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[150,39] cannot find symbol
+[ERROR]   symbol:   method getInitialLimit()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[151,35] cannot find symbol
+[ERROR]   symbol:   method getConsumed()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[152,43] cannot find symbol
+[ERROR]   symbol:   method getTransactionCount()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[153,34] cannot find symbol
+[ERROR]   symbol:   method getVersion()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[154,34] cannot find symbol
+[ERROR]   symbol:   method getDayDate()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[181,37] cannot find symbol
+[ERROR]   symbol:   method getRemaining()
+[ERROR]   location: variable limit of type com.limitcache.model.DailyLimit
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[257,43] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitCacheEntry
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[315,13] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/service/LimitCacheService.java:[330,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.limitcache.service.LimitCacheService
+[ERROR] /Users/nafiyasayed/Downloads/limit-cache-poc/backend/src/main/java/com/limitcache/model/DailyLimit.java:[92,31] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.limitcache.model.LimitCacheEntry
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

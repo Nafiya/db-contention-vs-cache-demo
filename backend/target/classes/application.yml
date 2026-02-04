@@ -1,0 +1,137 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: limit-cache-poc
+  
+  # PostgreSQL Configuration
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:limitdb}
+    username: ${POSTGRES_USER:limituser}
+    password: ${POSTGRES_PASSWORD:limitpass}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      pool-name: LimitCachePool
+  
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+  
+  # Redis Configuration
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 20
+          max-idle: 10
+          min-idle: 5
+          max-wait: 2000ms
+
+# Custom Application Properties
+limit-cache:
+  # Cache Configuration
+  cache:
+    enabled: true
+    key-prefix: "limits"
+    ttl-hours: 24
+  
+  # Sync Configuration
+  sync:
+    enabled: true
+    interval-seconds: 5
+    batch-size: 100
+    retry-attempts: 3
+  
+  # Load Test Configuration
+  load-test:
+    default-threads: 50
+    default-duration-seconds: 30
+    default-amount-range-min: 100
+    default-amount-range-max: 1000
+
+# Actuator & Metrics
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5, 0.95, 0.99
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.limitcache: DEBUG
+    org.springframework.data.redis: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# OpenAPI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+
+---
+# Development Profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+---
+# Direct DB Mode (for comparison testing)
+spring:
+  config:
+    activate:
+      on-profile: direct-db
+
+limit-cache:
+  cache:
+    enabled: false
+  sync:
+    enabled: false
+
+logging:
+  level:
+    com.limitcache: INFO

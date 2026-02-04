@@ -1,0 +1,164 @@
+<div class="comparison-page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Comparison</h1>
+      <p class="page-subtitle">Same requests, same threads — compare time taken with cache vs direct DB</p>
+    </div>
+  </div>
+
+  @if (error) {
+    <div class="alert alert-error">{{ error }}</div>
+  }
+
+  @if (running) {
+    <div class="running-state">
+      <div class="spinner-large"></div>
+      <h3>Running Comparison Test...</h3>
+      <p>Executing {{ totalRequests | number }} requests with {{ threads }} threads — first with cache, then with DB.</p>
+    </div>
+  } @else {
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><h3>Test Configuration</h3></div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Threads</label>
+          <input type="number" class="form-input" [(ngModel)]="threads" min="1" max="200">
+        </div>
+        <div class="form-group">
+          <label>Total Requests</label>
+          <input type="number" class="form-input" [(ngModel)]="totalRequests" min="1000" max="1000000" step="1000">
+        </div>
+      </div>
+      <button class="btn btn-primary run-btn" (click)="runComparison()">Run Comparison</button>
+    </div>
+
+    @if (result) {
+      <div class="card improvement-card">
+        <div class="card-header">
+          <div class="card-title"><h3>Result</h3></div>
+        </div>
+        <div class="improvement-banner">
+          <div class="improvement-stat highlight">
+            <span class="improvement-value">{{ result.directDbResults.durationMs / result.cacheResults.durationMs | number:'1.1-1' }}x</span>
+            <span class="improvement-label">Faster</span>
+          </div>
+          <div class="improvement-stat">
+            <span class="improvement-value">{{ result.cacheResults.durationMs | number }} ms</span>
+            <span class="improvement-label">Cache</span>
+          </div>
+          <div class="improvement-stat">
+            <span class="improvement-value">{{ result.directDbResults.durationMs | number }} ms</span>
+            <span class="improvement-label">DB</span>
+          </div>
+        </div>
+        <p class="improvement-summary">{{ result.improvement.summary }}</p>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><h3>Cache</h3></div>
+            <span class="mode-badge cache">CACHE</span>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card highlight-metric">
+              <div class="metric-label">Time Taken</div>
+              <div class="metric-value">{{ result.cacheResults.durationMs | number }} <small>ms</small></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Requests</div>
+              <div class="metric-value">{{ result.cacheResults.totalRequests | number }}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Successful</div>
+              <div class="metric-value success">{{ result.cacheResults.successfulRequests | number }}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">TPS</div>
+              <div class="metric-value">{{ result.cacheResults.throughputTps | number:'1.0-0' }}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Avg Latency</div>
+              <div class="metric-value">{{ result.cacheResults.avgLatencyMs | number:'1.2-2' }} <small>ms</small></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">P95</div>
+              <div class="metric-value">{{ result.cacheResults.p95LatencyMs | number:'1.2-2' }} <small>ms</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><h3>Direct DB</h3></div>
+            <span class="mode-badge db">DB</span>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card highlight-metric">
+              <div class="metric-label">Time Taken</div>
+              <div class="metric-value">{{ result.directDbResults.durationMs | number }} <small>ms</small></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Requests</div>
+              <div class="metric-value">{{ result.directDbResults.totalRequests | number }}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Successful</div>
+              <div class="metric-value success">{{ result.directDbResults.successfulRequests | number }}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">TPS</div>
+              <div class="metric-value">{{ result.directDbResults.throughputTps | number:'1.0-0' }}</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Avg Latency</div>
+              <div class="metric-value">{{ result.directDbResults.avgLatencyMs | number:'1.2-2' }} <small>ms</small></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">P95</div>
+              <div class="metric-value">{{ result.directDbResults.p95LatencyMs | number:'1.2-2' }} <small>ms</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (history.length > 0) {
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><h3>History</h3></div>
+        </div>
+        <div class="table-container">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Threads</th>
+                <th>Requests</th>
+                <th>Cache Time</th>
+                <th>DB Time</th>
+                <th>Speed</th>
+                <th>Summary</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of history; track item.id) {
+                <tr>
+                  <td>{{ item.createdAt | date:'short' }}</td>
+                  <td>{{ item.threads }}</td>
+                  <td>{{ item.totalRequests | number }}</td>
+                  <td>{{ item.durationMs | number }} ms</td>
+                  <td>{{ item.dbDurationMs | number }} ms</td>
+                  <td><span class="improvement-badge">{{ item.dbDurationMs / item.durationMs | number:'1.1-1' }}x</span></td>
+                  <td class="summary-cell">{{ item.improvementSummary }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    }
+  }
+</div>

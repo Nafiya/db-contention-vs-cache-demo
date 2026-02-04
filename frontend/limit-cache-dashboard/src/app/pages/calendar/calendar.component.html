@@ -1,0 +1,62 @@
+<div class="calendar-page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Calendar</h1>
+      <p class="page-subtitle">Monthly limit history and management</p>
+    </div>
+    <button class="btn btn-danger" (click)="resetLimits()">Reset Month</button>
+  </div>
+
+  <div class="card">
+    <div class="month-nav">
+      <button class="btn btn-secondary" (click)="prevMonth()">&larr; Previous</button>
+      <h2>{{ getMonthName() }} {{ year }}</h2>
+      <button class="btn btn-secondary" (click)="nextMonth()">Next &rarr;</button>
+    </div>
+  </div>
+
+  @if (error) {
+    <div class="alert alert-error">{{ error }}</div>
+  }
+
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading limits...</p>
+    </div>
+  } @else if (monthlyLimits.length === 0) {
+    <div class="card empty-state">
+      <p>No limit data for this month.</p>
+    </div>
+  } @else {
+    <div class="limits-grid">
+      <div *ngFor="let limit of monthlyLimits; trackBy: trackByLimitDate">
+        <div class="card limit-card">
+          <div class="limit-date">{{ limit.date || limit.limitDate }}</div>
+    
+          <div class="limit-info">
+            <div class="limit-row">
+              <span>Limit:</span>
+              <strong>{{ limit.initialLimit }}</strong>
+            </div>
+            <div class="limit-row">
+              <span>Consumed:</span>
+              <strong>{{ limit.consumed }}</strong>
+            </div>
+            <div class="limit-row">
+              <span>Remaining:</span>
+              <strong>{{ limit.remaining }}</strong>
+            </div>
+          </div>
+    
+          <div class="utilization-bar">
+            <div class="utilization-fill"
+                 [style.width.%]="limit.utilizationPercent || 0"
+                 [class.high]="(limit.utilizationPercent || 0) > 80">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
