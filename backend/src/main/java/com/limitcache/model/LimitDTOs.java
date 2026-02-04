@@ -217,6 +217,39 @@ public class LimitDTOs {
     }
 
     // ==========================================
+    // Live Demo SSE Event
+    // ==========================================
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LiveDemoEvent {
+        private String phase;           // "CACHE" or "DB"
+        private String eventType;       // "tick", "phase_start", "phase_end", "demo_complete"
+        private int completedRequests;
+        private int totalTargetRequests;
+        private int failedRequests;
+        private double avgLatencyMs;
+        private double currentTps;
+        private long elapsedMs;
+        private long lastRequestLatencyMs;
+        private int activeThreads;
+        private int queueDepth;
+        private String message;
+        // PostgreSQL contention metrics
+        private int pgActiveQueries;
+        private int pgWaitingOnLocks;
+        private int pgIdleInTransaction;
+        // Redis metrics
+        private long redisOpsPerSec;
+        private int redisConnectedClients;
+        private String redisUsedMemory;
+        private long redisKeyspaceHits;
+        private long redisKeyspaceMisses;
+    }
+
+    // ==========================================
     // Generic API Response Wrapper
     // ==========================================
 

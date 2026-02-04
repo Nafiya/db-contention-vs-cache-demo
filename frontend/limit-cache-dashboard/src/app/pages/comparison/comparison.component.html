@@ -23,11 +23,11 @@
       </div>
       <div class="form-grid">
         <div class="form-group">
-          <label>Threads</label>
+          <label>Threads <i class="info-icon" data-tooltip="Number of concurrent threads. Both cache and DB tests use the same thread count for a fair comparison.">i</i></label>
           <input type="number" class="form-input" [(ngModel)]="threads" min="1" max="200">
         </div>
         <div class="form-group">
-          <label>Total Requests</label>
+          <label>Total Requests <i class="info-icon" data-tooltip="Exact number of requests both cache and DB must process. The comparison shows how long each takes to finish the same workload.">i</i></label>
           <input type="number" class="form-input" [(ngModel)]="totalRequests" min="1000" max="1000000" step="1000">
         </div>
       </div>
@@ -42,7 +42,7 @@
         <div class="improvement-banner">
           <div class="improvement-stat highlight">
             <span class="improvement-value">{{ result.directDbResults.durationMs / result.cacheResults.durationMs | number:'1.1-1' }}x</span>
-            <span class="improvement-label">Faster</span>
+            <span class="improvement-label">Faster <i class="info-icon" data-tooltip="How many times faster cache completed the same workload compared to direct DB.">i</i></span>
           </div>
           <div class="improvement-stat">
             <span class="improvement-value">{{ result.cacheResults.durationMs | number }} ms</span>
@@ -76,15 +76,15 @@
               <div class="metric-value success">{{ result.cacheResults.successfulRequests | number }}</div>
             </div>
             <div class="metric-card">
-              <div class="metric-label">TPS</div>
+              <div class="metric-label">TPS <i class="info-icon" data-tooltip="Transactions Per Second — derived from total requests divided by time taken.">i</i></div>
               <div class="metric-value">{{ result.cacheResults.throughputTps | number:'1.0-0' }}</div>
             </div>
             <div class="metric-card">
-              <div class="metric-label">Avg Latency</div>
+              <div class="metric-label">Avg Latency <i class="info-icon" data-tooltip="Average time per request. Cache should be significantly lower than DB.">i</i></div>
               <div class="metric-value">{{ result.cacheResults.avgLatencyMs | number:'1.2-2' }} <small>ms</small></div>
             </div>
             <div class="metric-card">
-              <div class="metric-label">P95</div>
+              <div class="metric-label">P95 <i class="info-icon" data-tooltip="95th percentile — 95% of requests completed within this time.">i</i></div>
               <div class="metric-value">{{ result.cacheResults.p95LatencyMs | number:'1.2-2' }} <small>ms</small></div>
             </div>
           </div>

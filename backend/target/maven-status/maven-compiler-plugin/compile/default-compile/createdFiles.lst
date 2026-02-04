@@ -1,6 +1,7 @@
 com/limitcache/model/TestHistory$TestType.class
 com/limitcache/service/LimitCacheService.class
 com/limitcache/model/LimitDTOs$ImprovementMetrics.class
+com/limitcache/model/LimitDTOs$LiveDemoEvent$LiveDemoEventBuilder.class
 com/limitcache/config/RedisConfig.class
 com/limitcache/model/LimitDTOs$SyncResponse.class
 com/limitcache/model/LimitDTOs$MetricsResponse$MetricsResponseBuilder.class
@@ -13,7 +14,9 @@ com/limitcache/model/LimitDTOs$SystemMetrics.class
 com/limitcache/model/SyncHistory.class
 com/limitcache/controller/LimitController$BatchConsumeResponse$BatchConsumeResponseBuilder.class
 com/limitcache/model/DailyLimit.class
+com/limitcache/controller/LiveDemoController.class
 com/limitcache/model/TestHistory$TestHistoryBuilder.class
+com/limitcache/model/LimitDTOs$LiveDemoEvent.class
 com/limitcache/controller/LoadTestController.class
 com/limitcache/model/LimitDTOs$BatchConsumeRequest$BatchConsumeRequestBuilder.class
 com/limitcache/model/LimitDTOs.class

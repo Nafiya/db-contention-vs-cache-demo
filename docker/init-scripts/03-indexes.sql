@@ -43,11 +43,10 @@ ANALYZE sync_history;
 ANALYZE performance_metrics;
 
 -- Display index information
-SELECT 
+SELECT
     schemaname,
     tablename,
-    indexname,
-    pg_size_pretty(pg_relation_size(indexrelid)) as index_size
+    indexname
 FROM pg_indexes
 WHERE schemaname = 'public'
 ORDER BY tablename, indexname;

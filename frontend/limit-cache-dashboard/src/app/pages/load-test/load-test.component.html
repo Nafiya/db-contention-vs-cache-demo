@@ -33,15 +33,15 @@
       </div>
       <div class="form-grid">
         <div class="form-group">
-          <label>Threads</label>
+          <label>Threads <i class="info-icon" data-tooltip="Number of concurrent threads sending requests simultaneously. More threads = higher contention on the same database row.">i</i></label>
           <input type="number" class="form-input" [(ngModel)]="threads" min="1" max="200">
         </div>
         <div class="form-group">
-          <label>Total Requests</label>
+          <label>Total Requests <i class="info-icon" data-tooltip="Total number of limit-consume requests to execute. All threads share this workload. The test ends when all requests are processed.">i</i></label>
           <input type="number" class="form-input" [(ngModel)]="totalRequests" min="1000" max="1000000" step="1000">
         </div>
         <div class="form-group">
-          <label>Use Cache</label>
+          <label>Use Cache <i class="info-icon" data-tooltip="Yes = requests go through Redis cache (fast). No = requests go directly to PostgreSQL (slower, shows DB contention).">i</i></label>
           <select class="form-input" [(ngModel)]="useCache">
             <option [ngValue]="true">Yes</option>
             <option [ngValue]="false">No</option>
@@ -71,19 +71,19 @@
             <div class="metric-value" [class.error]="result.failedRequests > 0">{{ result.failedRequests | number }}</div>
           </div>
           <div class="metric-card highlight-metric">
-            <div class="metric-label">Time Taken</div>
+            <div class="metric-label">Time Taken <i class="info-icon" data-tooltip="Total wall-clock time to complete all requests. Lower means faster processing.">i</i></div>
             <div class="metric-value">{{ result.durationMs | number }} <small>ms</small></div>
           </div>
           <div class="metric-card">
-            <div class="metric-label">Throughput</div>
+            <div class="metric-label">Throughput <i class="info-icon" data-tooltip="Transactions Per Second — how many requests were completed per second on average.">i</i></div>
             <div class="metric-value">{{ result.throughputTps | number:'1.0-0' }} <small>TPS</small></div>
           </div>
           <div class="metric-card">
-            <div class="metric-label">Avg Latency</div>
+            <div class="metric-label">Avg Latency <i class="info-icon" data-tooltip="Average time for a single request to complete, measured from send to response.">i</i></div>
             <div class="metric-value">{{ result.avgLatencyMs | number:'1.2-2' }} <small>ms</small></div>
           </div>
           <div class="metric-card">
-            <div class="metric-label">P99 Latency</div>
+            <div class="metric-label">P99 Latency <i class="info-icon" data-tooltip="99th percentile latency — 99% of requests completed within this time. Shows worst-case behavior.">i</i></div>
             <div class="metric-value">{{ result.p99LatencyMs | number:'1.2-2' }} <small>ms</small></div>
           </div>
         </div>

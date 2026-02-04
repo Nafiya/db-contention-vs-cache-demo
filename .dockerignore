@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/target
+**/.angular
+**/.git
+**/.idea
+**/.vscode
+**/coverage
+**/*.log
+docker/
+.dockerignore
+fly.toml
+README.md

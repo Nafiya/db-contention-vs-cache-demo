@@ -297,6 +297,116 @@ svg {
   opacity: 1;
 }
 
+/* Tooltip below variant — use on elements near the top of the screen */
+.info-icon.tooltip-below::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+}
+
+.info-icon.tooltip-below::before {
+  bottom: auto;
+  top: calc(100% + 2px);
+  border-top-color: transparent;
+  border-bottom-color: #1f2937;
+}
+
+/* Terminals Container */
+.terminals-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .terminals-container { grid-template-columns: 1fr; }
+}
+
+/* Terminal Base */
+.pg-terminal {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #374151;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pg-terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  background: #374151;
+}
+
+.pg-terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.pg-terminal-dot.red { background: #ef4444; }
+.pg-terminal-dot.yellow { background: #f59e0b; }
+.pg-terminal-dot.green { background: #22c55e; }
+
+.pg-terminal-title {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.pg-terminal-body {
+  background: #111827;
+  padding: 0.75rem 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.pg-terminal-line {
+  color: #d1d5db;
+  white-space: nowrap;
+}
+
+.pg-terminal-line.warning {
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.pg-terminal-line.redis-active {
+  color: #34d399;
+  font-weight: 600;
+}
+
+.pg-terminal-line.phase-marker {
+  color: #818cf8;
+  font-weight: 600;
+  padding: 2px 0;
+}
+
+.redis-header {
+  background: #1a1a2e;
+}
+
+.redis-terminal {
+  border-color: #dc2626;
+}
+
+.pg-terminal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pg-terminal-body::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.pg-terminal-body::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 3px;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

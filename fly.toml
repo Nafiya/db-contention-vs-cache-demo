@@ -1,0 +1,42 @@
+# fly.io deployment configuration
+# ---------------------------------
+# Prerequisites:
+#   1. fly launch (creates the app)
+#   2. fly postgres create (managed Postgres)
+#   3. fly redis create (Upstash Redis)
+#   4. fly secrets set \
+#        POSTGRES_HOST=<fly-pg-host> \
+#        POSTGRES_PORT=5432 \
+#        POSTGRES_DB=limitdb \
+#        POSTGRES_USER=limituser \
+#        POSTGRES_PASSWORD=<fly-pg-password> \
+#        REDIS_HOST=<upstash-redis-host> \
+#        REDIS_PORT=6379 \
+#        REDIS_PASSWORD=<upstash-redis-password>
+#   5. fly deploy
+#
+# Note: You must seed the database manually on first deploy:
+#   fly ssh console
+#   Then run the SQL scripts against the Fly Postgres instance.
+#   Or attach to the Postgres app and run:
+#     fly postgres connect -a <pg-app-name>
+#     \i /path/to/01-schema.sql
+#     \i /path/to/02-seed-data.sql
+#     \i /path/to/03-indexes.sql
+
+app = "limit-cache-poc"
+primary_region = "iad"
+
+[build]
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 1

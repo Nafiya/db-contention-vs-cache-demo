@@ -4,13 +4,13 @@
       <h1 class="page-title">Calendar</h1>
       <p class="page-subtitle">Monthly limit history and management</p>
     </div>
-    <button class="btn btn-danger" (click)="resetLimits()">Reset Month</button>
+    <button class="btn btn-danger" (click)="resetLimits()">Reset Month <i class="info-icon tooltip-below" data-tooltip="Resets all daily limits for this month back to their initial values. Consumed amounts and transaction counts are cleared.">i</i></button>
   </div>
 
   <div class="card">
     <div class="month-nav">
       <button class="btn btn-secondary" (click)="prevMonth()">&larr; Previous</button>
-      <h2>{{ getMonthName() }} {{ year }}</h2>
+      <h2>{{ getMonthName() }} {{ year }} <i class="info-icon" data-tooltip="Each card represents a day's transaction limit. The bar shows how much of the daily limit has been consumed. Red bars indicate over 80% utilization.">i</i></h2>
       <button class="btn btn-secondary" (click)="nextMonth()">Next &rarr;</button>
     </div>
   </div>
