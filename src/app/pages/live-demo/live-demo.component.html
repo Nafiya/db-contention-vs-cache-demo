@@ -1,0 +1,274 @@
+<div class="live-demo-page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Live Demo</h1>
+      <p class="page-subtitle">Watch Redis cache vs Direct DB performance in real-time</p>
+    </div>
+  </div>
+
+  <!-- IDLE: Config -->
+  @if (demoState === 'idle') {
+    <div class="card demo-intro">
+      <h3>How it works</h3>
+      <p>This demo runs the same workload twice — first through <strong>Redis Cache</strong>, then through <strong>Direct PostgreSQL</strong>. Watch the real-time metrics to see how caching eliminates database contention and dramatically improves throughput.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><h3>Demo Configuration</h3></div>
+      </div>
+      <div class="config-form">
+        <div class="form-group">
+          <label>Concurrent Threads <i class="info-icon" data-tooltip="Number of concurrent threads sending requests simultaneously. More threads = more contention on PostgreSQL.">i</i></label>
+          <input type="number" class="form-input" [(ngModel)]="threads" min="5" max="100">
+        </div>
+        <div class="form-group">
+          <label>Total Requests <i class="info-icon" data-tooltip="Total number of requests to process in each phase. Both cache and DB will process this exact count.">i</i></label>
+          <input type="number" class="form-input" [(ngModel)]="totalRequests" min="500" max="10000" step="500">
+        </div>
+      </div>
+      <button class="btn btn-primary run-btn" (click)="startDemo()">
+        Start Live Demo
+      </button>
+    </div>
+  }
+
+  <!-- RUNNING or FINISHED: Show pipelines + terminal -->
+  @if (demoState === 'running' || demoState === 'finished') {
+
+    <!-- Finished: Results banner at top -->
+    @if (demoState === 'finished' && cacheFinal && dbFinal) {
+      <div class="card summary-card">
+        <div class="card-header">
+          <div class="card-title"><h3>Results</h3></div>
+          <button class="btn btn-primary" (click)="demoState = 'idle'">Run Again</button>
+        </div>
+        <div class="summary-grid">
+          <div class="summary-stat highlight">
+            <span class="summary-value">{{ getSpeedup() }}x</span>
+            <span class="summary-label">Faster with Cache</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-value cache-color">{{ cacheFinal.elapsedMs | number }}ms</span>
+            <span class="summary-label">Cache Duration</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-value db-color">{{ dbFinal.elapsedMs | number }}ms</span>
+            <span class="summary-label">DB Duration</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-value cache-color">{{ cacheFinal.currentTps | number:'1.0-0' }}</span>
+            <span class="summary-label">Cache TPS</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-value db-color">{{ dbFinal.currentTps | number:'1.0-0' }}</span>
+            <span class="summary-label">DB TPS</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-value cache-color">{{ cacheFinal.avgLatencyMs | number:'1.1-1' }}ms</span>
+            <span class="summary-label">Cache Avg Latency</span>
+          </div>
+          <div class="summary-stat">
+            <span class="summary-value db-color">{{ dbFinal.avgLatencyMs | number:'1.1-1' }}ms</span>
+            <span class="summary-label">DB Avg Latency</span>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Running controls -->
+    @if (demoState === 'running') {
+      <div class="demo-controls">
+        <button class="btn btn-secondary" (click)="stopDemo()">Stop Demo</button>
+        @if (currentPhase) {
+          <span class="phase-indicator">
+            Running: <strong>{{ currentPhase === 'CACHE' ? 'Redis Cache' : 'Direct PostgreSQL' }}</strong>
+          </span>
+        } @else if (cacheFinal && !dbFinal) {
+          <span class="phase-indicator waiting">Preparing DB phase...</span>
+        }
+      </div>
+    }
+
+    <div class="pipelines-container">
+      <!-- Cache Pipeline -->
+      <div class="pipeline-card" [class.active]="currentPhase === 'CACHE'" [class.done]="cacheFinal">
+        <div class="pipeline-header">
+          <div class="pipeline-title">
+            <span class="mode-badge cache">CACHE</span>
+            <h3>Redis Cache</h3>
+          </div>
+          @if (currentPhase === 'CACHE') {
+            <span class="live-badge">LIVE</span>
+          }
+          @if (cacheFinal) {
+            <span class="done-badge">DONE — {{ cacheFinal.elapsedMs | number }}ms</span>
+          }
+        </div>
+
+        <!-- Pipe visualization -->
+        <div class="pipe-container">
+          <div class="pipe-label">IN</div>
+          <div class="pipe">
+            <div class="pipe-inner">
+              @for (dot of cachePipelineDots; track dot.id) {
+                <div class="request-dot fast"></div>
+              }
+            </div>
+          </div>
+          <div class="pipe-label">OUT</div>
+        </div>
+
+        <!-- Queue depth bar -->
+        <div class="metric-bar-row">
+          <span class="metric-bar-label">Queue</span>
+          <div class="metric-bar">
+            <div class="metric-bar-fill cache-fill"
+                 [style.width.%]="cacheMetrics ? (cacheMetrics.queueDepth / totalRequests * 100) : 0">
+            </div>
+          </div>
+          <span class="metric-bar-value">{{ cacheMetrics?.queueDepth ?? 0 }}</span>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="metric-bar-row">
+          <span class="metric-bar-label">Progress</span>
+          <div class="metric-bar">
+            <div class="metric-bar-fill progress-cache" [style.width.%]="getProgress(cacheMetrics)"></div>
+          </div>
+          <span class="metric-bar-value">{{ getProgress(cacheMetrics) }}%</span>
+        </div>
+
+        <!-- Live counters -->
+        <div class="live-metrics">
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (cacheMetrics?.completedRequests ?? 0) | number }}</span>
+            <span class="live-metric-label">Completed</span>
+          </div>
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (cacheMetrics?.currentTps ?? 0) | number:'1.0-0' }}</span>
+            <span class="live-metric-label">TPS</span>
+          </div>
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (cacheMetrics?.avgLatencyMs ?? 0) | number:'1.1-1' }}<small>ms</small></span>
+            <span class="live-metric-label">Avg Latency</span>
+          </div>
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (cacheMetrics?.elapsedMs ?? 0) | number }}<small>ms</small></span>
+            <span class="live-metric-label">Elapsed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DB Pipeline -->
+      <div class="pipeline-card" [class.active]="currentPhase === 'DB'" [class.done]="dbFinal">
+        <div class="pipeline-header">
+          <div class="pipeline-title">
+            <span class="mode-badge db">DB</span>
+            <h3>Direct PostgreSQL</h3>
+          </div>
+          @if (currentPhase === 'DB') {
+            <span class="live-badge">LIVE</span>
+          }
+          @if (dbFinal) {
+            <span class="done-badge">DONE — {{ dbFinal.elapsedMs | number }}ms</span>
+          }
+        </div>
+
+        <div class="pipe-container">
+          <div class="pipe-label">IN</div>
+          <div class="pipe">
+            <div class="pipe-inner">
+              @for (dot of dbPipelineDots; track dot.id) {
+                <div class="request-dot slow"></div>
+              }
+            </div>
+          </div>
+          <div class="pipe-label">OUT</div>
+        </div>
+
+        <div class="metric-bar-row">
+          <span class="metric-bar-label">Queue</span>
+          <div class="metric-bar">
+            <div class="metric-bar-fill db-fill"
+                 [style.width.%]="dbMetrics ? (dbMetrics.queueDepth / totalRequests * 100) : (currentPhase === 'DB' || dbFinal ? 100 : 0)">
+            </div>
+          </div>
+          <span class="metric-bar-value">{{ dbMetrics?.queueDepth ?? (currentPhase === 'DB' ? totalRequests : 0) }}</span>
+        </div>
+
+        <div class="metric-bar-row">
+          <span class="metric-bar-label">Progress</span>
+          <div class="metric-bar">
+            <div class="metric-bar-fill progress-db" [style.width.%]="getProgress(dbMetrics)"></div>
+          </div>
+          <span class="metric-bar-value">{{ getProgress(dbMetrics) }}%</span>
+        </div>
+
+        <div class="live-metrics">
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (dbMetrics?.completedRequests ?? 0) | number }}</span>
+            <span class="live-metric-label">Completed</span>
+          </div>
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (dbMetrics?.currentTps ?? 0) | number:'1.0-0' }}</span>
+            <span class="live-metric-label">TPS</span>
+          </div>
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (dbMetrics?.avgLatencyMs ?? 0) | number:'1.1-1' }}<small>ms</small></span>
+            <span class="live-metric-label">Avg Latency</span>
+          </div>
+          <div class="live-metric">
+            <span class="live-metric-value">{{ (dbMetrics?.elapsedMs ?? 0) | number }}<small>ms</small></span>
+            <span class="live-metric-label">Elapsed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminals side by side -->
+    @if (redisTerminalLines.length > 0 || pgTerminalLines.length > 0) {
+      <div class="terminals-container">
+        <!-- Redis Terminal (Cache Phase) -->
+        <div class="pg-terminal redis-terminal">
+          <div class="pg-terminal-header redis-header">
+            <span class="pg-terminal-dot red"></span>
+            <span class="pg-terminal-dot yellow"></span>
+            <span class="pg-terminal-dot green"></span>
+            <span class="pg-terminal-title">Redis — Cache Phase</span>
+          </div>
+          <div class="pg-terminal-body" #redisTerminalBody>
+            @if (redisTerminalLines.length === 0) {
+              <div class="pg-terminal-line" style="color: #6b7280; font-style: italic;">Waiting for cache phase...</div>
+            }
+            @for (line of redisTerminalLines; track $index) {
+              <div class="pg-terminal-line"
+                   [class.redis-active]="line.includes('EVALSHA')"
+                   [class.phase-marker]="line.startsWith('▶') || line.startsWith('✓')">{{ line }}</div>
+            }
+          </div>
+        </div>
+
+        <!-- PostgreSQL Terminal (DB Phase) -->
+        <div class="pg-terminal">
+          <div class="pg-terminal-header">
+            <span class="pg-terminal-dot red"></span>
+            <span class="pg-terminal-dot yellow"></span>
+            <span class="pg-terminal-dot green"></span>
+            <span class="pg-terminal-title">PostgreSQL — DB Phase</span>
+          </div>
+          <div class="pg-terminal-body" #pgTerminalBody>
+            @if (pgTerminalLines.length === 0) {
+              <div class="pg-terminal-line" style="color: #6b7280; font-style: italic;">Waiting for DB phase...</div>
+            }
+            @for (line of pgTerminalLines; track $index) {
+              <div class="pg-terminal-line"
+                   [class.warning]="line.includes('WAITING ON LOCKS')"
+                   [class.phase-marker]="line.startsWith('▶') || line.startsWith('✓')">{{ line }}</div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>

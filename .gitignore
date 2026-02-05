@@ -1,22 +1,42 @@
-# Backend build artifacts
-backend/target/
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# Frontend build artifacts
-frontend/limit-cache-dashboard/dist/
-frontend/limit-cache-dashboard/node_modules/
-frontend/limit-cache-dashboard/.angular/
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
-# IDE
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
 .idea/
-.vscode/
-*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# OS
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log
-
-# Claude
-.claude/

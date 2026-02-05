@@ -1,0 +1,290 @@
+<div class="how-it-works">
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-badge">Limit Cache — How It Works</div>
+    <h1>Eliminating Database Contention with Redis Atomic Caching</h1>
+    <p class="hero-subtitle">
+      When hundreds of concurrent requests update the same row in PostgreSQL, lock contention destroys throughput.
+      This project demonstrates how a Redis-backed cache with atomic Lua scripts eliminates that bottleneck entirely.
+    </p>
+  </section>
+
+  <!-- Section 1: The Problem -->
+  <section class="content-section">
+    <div class="section-number">1</div>
+    <h2>The Problem — Database Hot-Spot Contention</h2>
+    <p>
+      Consider a <strong>daily transaction limit</strong> system: every API call must check and decrement a customer's
+      remaining limit for the day. In PostgreSQL, this means every request runs:
+    </p>
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-lang">SQL</span>
+        <span class="code-label">Every concurrent request executes this</span>
+      </div>
+      <pre><code>UPDATE daily_limits
+SET    used_amount = used_amount + :amount
+WHERE  customer_id = :id
+  AND  year = :year AND month = :month
+  AND  used_amount + :amount &lt;= max_limit;</code></pre>
+    </div>
+    <p>
+      When 20+ threads hit the same row simultaneously, PostgreSQL serializes them with
+      <strong>row-level locks</strong>. Each thread waits for the previous one to commit before acquiring the lock.
+      The result:
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon red">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h4>Lock Waits</h4>
+        <p>Queries pile up in <code>pg_stat_activity</code> with <code>wait_event_type = 'Lock'</code></p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon amber">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+          </svg>
+        </div>
+        <h4>Throughput Collapse</h4>
+        <p>TPS drops dramatically as threads spend most of their time waiting, not working</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon red">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h4>Latency Spikes</h4>
+        <p>Average latency climbs from single-digit ms to 50–200ms under contention</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: How to Identify -->
+  <section class="content-section">
+    <div class="section-number">2</div>
+    <h2>How to Identify It — Diagnosing Lock Contention</h2>
+    <p>
+      In the <a routerLink="/live-demo">Live Demo</a>, watch the <strong>PostgreSQL terminal</strong> during the
+      "Direct DB" phase. You'll see output like:
+    </p>
+    <div class="terminal-example">
+      <div class="pg-terminal">
+        <div class="pg-terminal-header">
+          <span class="pg-terminal-dot red"></span>
+          <span class="pg-terminal-dot yellow"></span>
+          <span class="pg-terminal-dot green"></span>
+          <span class="pg-terminal-title">PostgreSQL — pg_stat_activity</span>
+        </div>
+        <div class="pg-terminal-body">
+          <div class="pg-terminal-line">[1.2s] DB    | pg_stat_activity: 18 active, 3 idle_in_tx | avg_latency: 12ms</div>
+          <div class="pg-terminal-line warning">[1.5s] DB    | pg_stat_activity: 20 active, 14 WAITING ON LOCKS, 5 idle_in_tx | avg_latency: 45ms</div>
+          <div class="pg-terminal-line warning">[1.8s] DB    | pg_stat_activity: 20 active, 16 WAITING ON LOCKS, 4 idle_in_tx | avg_latency: 78ms</div>
+          <div class="pg-terminal-line warning">[2.1s] DB    | pg_stat_activity: 19 active, 15 WAITING ON LOCKS, 6 idle_in_tx | avg_latency: 102ms</div>
+        </div>
+      </div>
+    </div>
+    <p>
+      The key indicator is <strong class="highlight-warning">WAITING ON LOCKS</strong> — when this number is high,
+      most of your threads are blocked, waiting for a single row lock. This is the hot-spot contention pattern.
+    </p>
+    <div class="callout">
+      <strong>Compare with the Cache phase:</strong> During the Redis-backed cache phase, the PostgreSQL terminal shows
+      <em>"Redis handling requests — no DB contention"</em> because the database is never touched for individual requests.
+    </div>
+  </section>
+
+  <!-- Section 3: The Solution -->
+  <section class="content-section">
+    <div class="section-number">3</div>
+    <h2>The Solution — Redis Atomic Lua Scripts</h2>
+    <p>
+      Instead of hitting PostgreSQL for every request, we cache the limit state in Redis and use an
+      <strong>atomic Lua script</strong> to check-and-decrement in a single operation — with zero locks.
+    </p>
+
+    <h3>Why Redis Is Lock-Free</h3>
+    <p>
+      Redis processes all commands on a <strong>single thread</strong>. This means:
+    </p>
+    <div class="architecture-flow">
+      <div class="flow-step">
+        <div class="flow-number">1</div>
+        <div class="flow-content">
+          <h4>Single-Threaded Event Loop</h4>
+          <p>Redis executes one command at a time. No two operations ever run concurrently on the same data.</p>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-step">
+        <div class="flow-number">2</div>
+        <div class="flow-content">
+          <h4>Atomic Lua Scripts (EVALSHA)</h4>
+          <p>A Lua script runs as a single atomic unit — no other command can interleave during execution.</p>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-step">
+        <div class="flow-number">3</div>
+        <div class="flow-content">
+          <h4>Check + Decrement in One Call</h4>
+          <p>The script reads the current limit, checks if the amount fits, and decrements — all atomically.</p>
+        </div>
+      </div>
+      <div class="flow-connector"></div>
+      <div class="flow-step">
+        <div class="flow-number">4</div>
+        <div class="flow-content">
+          <h4>No Locks, No Waits</h4>
+          <p>Because there's only one thread, there are no lock waits, no deadlocks, no contention — ever.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>The Lua Script</h3>
+    <p>
+      Each request invokes this Lua script via <code>EVALSHA</code>. Redis executes it atomically:
+    </p>
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-lang">Lua</span>
+        <span class="code-label">limit_consume_script — runs atomically in Redis</span>
+      </div>
+      <pre><code>-- Key: limit:{{ '{' }}customerId{{ '}' }}:{{ '{' }}year{{ '}' }}:{{ '{' }}month{{ '}' }}
+-- Args: amount, maxLimit
+
+local current = tonumber(redis.call('GET', KEYS[1]) or '0')
+local amount  = tonumber(ARGV[1])
+local maxLim  = tonumber(ARGV[2])
+
+if current + amount > maxLim then
+  return -1  -- limit exceeded
+end
+
+redis.call('INCRBY', KEYS[1], amount)
+return current + amount  -- new used amount</code></pre>
+    </div>
+
+    <div class="terminal-example">
+      <div class="pg-terminal redis-terminal">
+        <div class="pg-terminal-header redis-header">
+          <span class="pg-terminal-dot red"></span>
+          <span class="pg-terminal-dot yellow"></span>
+          <span class="pg-terminal-dot green"></span>
+          <span class="pg-terminal-title">Redis — Command Execution (single-threaded)</span>
+        </div>
+        <div class="pg-terminal-body">
+          <div class="pg-terminal-line redis-active">[0.1s] EVALSHA limit_consume_script — ops/sec: 12450 | clients: 20 | keyspace hits: 156, misses: 0</div>
+          <div class="pg-terminal-line redis-active">[0.2s] EVALSHA limit_consume_script — ops/sec: 13200 | clients: 20 | keyspace hits: 312, misses: 0</div>
+          <div class="pg-terminal-line redis-active">[0.3s] EVALSHA limit_consume_script — ops/sec: 14100 | clients: 20 | keyspace hits: 489, misses: 0</div>
+          <div class="pg-terminal-line redis-active">[0.4s] EVALSHA limit_consume_script — ops/sec: 13800 | clients: 20 | keyspace hits: 645, misses: 0</div>
+        </div>
+      </div>
+    </div>
+    <p>
+      Each <code>EVALSHA</code> call completes in microseconds. Even with 20 concurrent clients, Redis processes
+      them sequentially at 10,000+ ops/sec — no client ever waits for a lock.
+    </p>
+  </section>
+
+  <!-- Section 4: Architecture -->
+  <section class="content-section">
+    <div class="section-number">4</div>
+    <h2>How It Works Here — Write-Behind Cache Architecture</h2>
+    <p>
+      This project uses a <strong>write-behind cache</strong> pattern: Redis handles all real-time limit checks,
+      and changes are periodically synced back to PostgreSQL.
+    </p>
+    <div class="architecture-diagram">
+      <div class="arch-layer">
+        <div class="arch-box api">
+          <h4>API Request</h4>
+          <p>Consume limit</p>
+        </div>
+        <div class="arch-arrow">&#8594;</div>
+        <div class="arch-box redis">
+          <h4>Redis Cache</h4>
+          <p>Atomic Lua script<br/>Check + Decrement</p>
+        </div>
+        <div class="arch-arrow">&#8594;</div>
+        <div class="arch-box response">
+          <h4>Response</h4>
+          <p>Approved / Denied<br/>&lt; 1ms</p>
+        </div>
+      </div>
+      <div class="arch-sync">
+        <div class="arch-sync-arrow">&#8595;</div>
+        <div class="arch-sync-label">Periodic Sync (background)</div>
+        <div class="arch-sync-arrow">&#8595;</div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-box db">
+          <h4>PostgreSQL</h4>
+          <p>Source of truth<br/>Batch UPDATE</p>
+        </div>
+      </div>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon green">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h4>Sub-millisecond Latency</h4>
+        <p>Redis responds in microseconds — no disk I/O, no lock waits</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon green">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h4>Atomically Correct</h4>
+        <p>Lua scripts guarantee no race conditions — limits are never over-consumed</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon green">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+          </svg>
+        </div>
+        <h4>DB Load Eliminated</h4>
+        <p>PostgreSQL handles only periodic batch syncs — no per-request contention</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon green">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+          </svg>
+        </div>
+        <h4>Cache Warm-Up</h4>
+        <p>On startup, limits are loaded from PostgreSQL into Redis — instant readiness</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: See It In Action -->
+  <section class="content-section cta-section">
+    <div class="cta-card">
+      <h2>See It In Action</h2>
+      <p>
+        The Live Demo runs both approaches back-to-back with real PostgreSQL and Redis instances.
+        Watch the terminals, compare the queue depths, and see the speedup for yourself.
+      </p>
+      <a routerLink="/live-demo" class="btn btn-primary btn-lg">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+          <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Launch Live Demo
+      </a>
+    </div>
+  </section>
+
+</div>

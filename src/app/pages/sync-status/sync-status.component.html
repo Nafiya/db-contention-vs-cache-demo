@@ -1,0 +1,33 @@
+<div class="sync-status-page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Sync Status</h1>
+      <p class="page-subtitle">Cache-to-database synchronization health</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-secondary" (click)="loadStats()">Refresh</button>
+      <button class="btn btn-primary" (click)="triggerSync()" [disabled]="syncing">
+        {{ syncing ? 'Syncing...' : 'Trigger Sync' }}
+        <i class="info-icon tooltip-below" data-tooltip="Manually triggers a cache-to-database sync. Writes all modified cache entries back to PostgreSQL.">i</i>
+      </button>
+    </div>
+  </div>
+
+  @if (error) {
+    <div class="alert alert-error">{{ error }}</div>
+  }
+
+  @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading sync status...</p>
+    </div>
+  } @else if (stats) {
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><h3>Sync Statistics</h3> <i class="info-icon" data-tooltip="Shows the state of the background sync process that periodically writes cached limit updates back to the database.">i</i></div>
+      </div>
+      <pre class="result-json">{{ stats | json }}</pre>
+    </div>
+  }
+</div>
